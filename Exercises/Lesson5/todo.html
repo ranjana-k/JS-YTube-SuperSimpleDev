@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>todo List App</title>
+  </head>
+  <body>
+    <h2>DOM Tasks</h2>
+    <script>
+      //Task1
+      let btnElement = document.createElement("button");
+      btnElement.innerText = "Click Me";
+      document.body.appendChild(btnElement);
+
+      //Task2
+      document.title = "Exercise5 Task2";
+
+      //Task3
+      let todo1 = "Get groceries";
+      let todo2 = "Wash Car";
+      let todo3 = "Make dinner";
+
+      let element = document.createElement("div");
+      element.innerText = todo3;
+      document.body.appendChild(element);
+
+      element = document.createElement("div");
+      element.innerHTML = todo2;
+      document.body.appendChild(element);
+
+      element = document.createElement("div");
+      element.innerText = todo1;
+      document.body.appendChild(element);
+    </script>
+  </body>
+</html>
