@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Exercise7</title>
+  </head>
+  <body>
+    <h2>Check console Tab</h2>
+    <script>
+      //Task1
+
+      function toUpper(arrStr) {
+        let newArr = [];
+        arrStr.forEach(function (str) {
+          newArr.push(str.toUpperCase());
+        });
+        console.log(newArr);
+      }
+      toUpper(["hello", "world"]);
+
+      //Task2
+      function arrayDouble(arr) {
+        let newArr = [];
+        arr.forEach(function (ele) {
+          newArr.push(ele);
+          newArr.push(ele);
+        });
+        console.log(newArr);
+      }
+
+      arrayDouble(["bark", "meow"]);
+
+      //Task3
+
+      function arraySum(arr) {
+        let total = 0;
+
+        arr.forEach(function (ele) {
+          total = total + ele;
+        });
+        console.log("Sum of array is: ", total);
+      }
+      arraySum([1, 2, 3]);
+      arraySum([5, -2, 7, 0]);
+    </script>
+  </body>
+</html>
