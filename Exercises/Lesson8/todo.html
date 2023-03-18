@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Exercise8</title>
+  </head>
+  <body>
+    <button id="todo-button" onclick="changeToDone()">To Do</button>
+    <div>__________________________</div>
+    <div id="counter">0</div>
+    <button onclick="incrementCounter()">Up</button>
+    <button onclick="decrementCounter()">Down</button>
+    <div>__________________________</div>
+    <input id="todo-title" type="text" />
+    <button onclick="submitHandler()">Submit</button>
+    <div id="inputDiv"></div>
+    <script>
+      //Task1
+      function changeToDone() {
+        let button = document.getElementById("todo-button");
+        button.innerText = "Done";
+      }
+      //Task2
+      let count = 0;
+      function incrementCounter() {
+        count = count + 1;
+        let counterDiv = document.getElementById("counter");
+        counterDiv.innerText = count;
+      }
+
+      //Task3
+      function decrementCounter() {
+        count = count - 1;
+        let counterDiv = document.getElementById("counter");
+        counterDiv.innerText = count;
+      }
+
+      //Task4
+      function submitHandler() {
+        let todoTitle = document.getElementById("todo-title");
+        let title = todoTitle.value;
+
+        let div = document.getElementById("inputDiv");
+        div.innerText = title;
+        document.body.appendChild(div);
+      }
+    </script>
+  </body>
+</html>

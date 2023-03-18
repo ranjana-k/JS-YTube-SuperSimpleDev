@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Todo List App</title>
+  </head>
+  <body>
+    <input id="todo-title" type="text" />
+    <button onclick="addTodo()">Add Todo</button>
+
+    <script>
+      //Array
+      let todos = ["Get Groceries", "Wash car", "Make Dinner"];
+
+      //Loops
+      todos.forEach(function (todoTitle) {
+        let element = document.createElement("div");
+        element.innerText = todoTitle;
+        document.body.appendChild(element);
+      });
+
+      //creted onCLick event handler where it will get element value and push it in array
+      function addTodo() {
+        let textBox = document.getElementById("todo-title");
+        let todoTitle = textBox.value;
+        todos.push(todoTitle); //Array method to add an element
+      }
+    </script>
+  </body>
+</html>
