@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <title>Exercise10-2nd and 3rd Task</title>
+  </head>
+  <body>
+    <div id="receipt"></div>
+    <script>
+      const receipt = document.getElementById("receipt");
+
+      function displayReceipt(cartArr) {
+        //reseting the cart content
+        receipt.innerHTML = "";
+
+        //Each foodItem details
+        cartArr.forEach((foodItem) => {
+          //foodItem is an Obj
+          let itemTotal = 0;
+          const receiptLine = document.createElement("div");
+          itemTotal = itemTotal + foodItem.price * foodItem.quantity;
+          receiptLine.innerText =
+            foodItem.name +
+            " $" +
+            foodItem.price +
+            " * " +
+            foodItem.quantity +
+            " = " +
+            "$" +
+            itemTotal;
+
+          receipt.appendChild(receiptLine);
+        });
+
+        //Cart Total
+        let cartTotal = 0;
+        const cartTotalDiv = document.createElement("div");
+        cartArr.forEach(function (itemObj) {
+          cartTotal = cartTotal + itemObj.price * itemObj.quantity;
+          cartTotalDiv.innerText = "Cart Total= $" + cartTotal;
+          receipt.appendChild(cartTotalDiv);
+        });
+      }
+
+      displayReceipt([
+        { name: "Apple", price: 4, quantity: 2 },
+        { name: "Orange", price: 3, quantity: 3 },
+      ]);
+    </script>
+  </body>
+</html>

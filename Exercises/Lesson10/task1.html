@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Exercise10</title>
+  </head>
+  <body>
+    <h2>Total cart price is consoled below</h2>
+    <script>
+      function cartTotal(cartArr) {
+        let total = 0;
+        cartArr.forEach(function (itemObj) {
+          total = total + itemObj.price * itemObj.quantity;
+        });
+        console.log("Total Price of Cart is: " + total);
+      }
+
+      cartTotal([
+        { name: "Apple", price: 4, quantity: 2 },
+        { name: "Orange", price: 3, quantity: 3 },
+      ]);
+    </script>
+  </body>
+</html>
