@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Exercise11</title>
+  </head>
+
+  <body>
+    <!-- <h2>hii</h2> -->
+
+    <script>
+      let total = 0;
+      function createCart(foodPrices) {
+        const foods = Object.keys(foodPrices);
+
+        foods.map(function (food) {
+          const itemDiv = document.createElement("div");
+          const foodPrice = foodPrices[food];
+
+          itemDiv.innerText = food + " $" + foodPrice;
+
+          const addButton = document.createElement("button");
+          addButton.innerText = "Add";
+          itemDiv.appendChild(addButton);
+
+          addButton.onclick = function () {
+            total = total + foodPrice;
+            console.log("New Total: $" + total);
+          };
+
+          document.body.appendChild(itemDiv);
+        });
+      }
+
+      createCart({ Apple: 3, Orange: 4, Eggs: 2 });
+    </script>
+  </body>
+</html>
