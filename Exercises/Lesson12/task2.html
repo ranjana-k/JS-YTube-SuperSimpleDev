@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Exercise12</title>
+  </head>
+
+  <body>
+    <script>
+      const foodArray = [
+        { name: "Apple", color: "red" },
+        { name: "Egg", color: "white" },
+      ];
+
+      function removeRed(foodArr) {
+        return foodArr.filter(function (food) {
+          return food.color !== "red";
+        });
+      }
+
+      console.log(removeRed(foodArray));
+    </script>
+  </body>
+</html>

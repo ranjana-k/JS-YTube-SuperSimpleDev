@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Exercise12</title>
+  </head>
+
+  <body>
+    <script>
+      //Task1
+      const temps = [40, 67, 8, 29, 100, -3, 0];
+      //output: [40, 67, 100]
+
+      function aboveFreezing(tempList) {
+        const result = tempList.filter(function (temp) {
+          return temp > 32;
+        });
+
+        return result;
+      }
+
+      console.log(aboveFreezing(temps));
+    </script>
+  </body>
+</html>
