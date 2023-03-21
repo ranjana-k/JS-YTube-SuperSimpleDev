@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Exercise13- Task3</title>
+  </head>
+
+  <body>
+    <script>
+      function minNonNegative(arrNum) {
+        let min = Infinity;
+
+        arrNum.forEach(function (num) {
+          if (num < 0) {
+            return;
+          } else if (num < min) {
+            min = num;
+          }
+        });
+        return min;
+      }
+      console.log(minNonNegative([1, 5, -2, 4, 3, 5, 0]));
+      //output: 0 else if 0 is not there it will be 1
+    </script>
+  </body>
+</html>

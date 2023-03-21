@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Exercise13- Task2</title>
+  </head>
+
+  <body>
+    <script>
+      function min(arrNum) {
+        let min = Infinity;
+
+        arrNum.forEach(function (num) {
+          if (num < min) {
+            min = num;
+          }
+        });
+        return min;
+      }
+      console.log(min([1, 5, -2, 4, 3, 5, 0]));
+    </script>
+  </body>
+</html>

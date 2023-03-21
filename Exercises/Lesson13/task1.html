@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Exercise13- Task1</title>
+  </head>
+
+  <body>
+    <script>
+      function max(arrNum) {
+        let max = -Infinity;
+        arrNum.filter(function (num) {
+          if (num > max) {
+            max = num;
+          }
+        });
+        return max;
+      }
+
+      console.log(max([1, 5, -2, 4, 3, 5, 0]));
+    </script>
+  </body>
+</html>

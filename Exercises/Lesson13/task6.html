@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Exercise13- Task6</title>
+  </head>
+
+  <body>
+    <script>
+      function pickLastApples(fruitArray) {
+        let applesPicked = 0;
+
+        const reversedArray = fruitArray.reverse();
+
+        const filteredArray = reversedArray.filter(function (fruit) {
+          if (applesPicked >= 2) {
+            return true;
+          } else if (fruit === "apple") {
+            applesPicked = applesPicked + 1;
+            return false;
+          } else {
+            return true;
+          }
+        });
+
+        // Remember to reverse the array back.
+        return filteredArray.reverse();
+      }
+      console.log(
+        pickLastApples([
+          "cherry",
+          "apple",
+          "orange",
+          "apple",
+          "banana",
+          "apple",
+        ])
+      );
+      //Output:['cherry', "apple", "orange" 'banana']
+    </script>
+  </body>
+</html>

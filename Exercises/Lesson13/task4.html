@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>Exercise13- Task4</title>
+  </head>
+
+  <body>
+    <script>
+      function pickApples(fruitArr) {
+        let applesPicked = 0;
+
+        const filteredArray = fruitArr.filter(function (fruit) {
+          if (applesPicked >= 2) {
+            return true;
+          } else if (fruit == "apple") {
+            applesPicked = applesPicked + 1;
+            return false;
+          } else {
+            return true;
+          }
+        });
+        return filteredArray;
+      }
+
+      pickApples(["cherry", "apple", "orange", "apple", "banana", "apple"]);
+      //Output:['cherry', 'orange', 'banana', 'apple']
+    </script>
+  </body>
+</html>
