@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <title>Todo List App</title>
+  </head>
+  <body>
+    <input id="todo-title" type="text" />
+    <input id="date-picker" type="date" />
+    <button onclick="addTodo()">Add Todo</button>
+
+    <div id="todo-list"></div>
+    <script>
+      /////////////////////////////////////////////
+      /////                MODEL             //////
+      /////////////////////////////////////////////
+      let todos = [
+        {
+          title: "Get groceries",
+          dueDate: "2021-10-04",
+          id: "id1",
+        },
+        {
+          title: "Wash car",
+          dueDate: "2021-02-03",
+          id: "id2",
+        },
+        {
+          title: "Make dinner",
+          dueDate: "2021-03-04",
+          id: "id3",
+        },
+      ];
+
+      //create todo
+      function createTodo(title, dueDate) {
+        const id = " " + new Date().getTime(); // converting number to string by adding empty string
+
+        todos.push({ title: title, dueDate: dueDate, id: id }); //Array method to add an element
+      }
+      //Delete todo
+      function removeTodo(idToDelete) {
+        todos = todos.filter(function (todo) {
+          //if the id of this todo is matches idToDelete, return false
+          // for everything else, return true
+          // if todo.id === idToDelete i.e 01 ===01 returns true and
+          if (todo.id === idToDelete) {
+            return false; // because we want to remove from array
+          } else {
+            return true;
+          }
+        });
+      }
+
+      function toggleTodo(todoId, checked) {
+        todos.forEach(function (todo) {
+          if (todo.id === todoId) {
+            todo.isDone = checked;
+          }
+        });
+      }
+      /////////////////////////////////////////////
+      /////                VIEW              //////
+      /////////////////////////////////////////////
+
+      function render() {
+        //reset
+        document.getElementById("todo-list").innerHTML = "";
+
+        // displaying each data from array
+        todos.forEach(function (todo) {
+          const div = document.createElement("div");
+          div.innerText = todo.title + " " + todo.dueDate;
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.onchange = checkTodo;
+          checkbox.dataset.todoId = todo.id; // adding a attribute to checkbox field
+          if (todo.isDone === true) {
+            checkbox.checked = true; // we have added a new property "isDone" in todo during event handling
+          } else {
+            checkbox.checked = false;
+          }
+
+          div.prepend(checkbox);
+
+          //adding deleteButton to each
+          const deleteButton = document.createElement("button");
+          deleteButton.innerText = "Delete";
+          //giving style attribute using JS
+          deleteButton.style = "margin-left:12px";
+          deleteButton.onclick = deleteTodo; //calling deleteFunction on Click
+
+          //adding id to created button
+          deleteButton.id = todo.id;
+          div.appendChild(deleteButton);
+
+          const todoList = document.getElementById("todo-list");
+          todoList.appendChild(div);
+        });
+      }
+
+      /////////////////////////////////////////////
+      /////               CONTROLLER         //////
+      /////////////////////////////////////////////
+
+      function addTodo() {
+        const textBox = document.getElementById("todo-title");
+        const todoTitle = textBox.value;
+
+        const datePicker = document.getElementById("date-picker");
+        const dateValue = datePicker.value;
+        createTodo(todoTitle, dateValue);
+        render();
+      }
+
+      function deleteTodo(event) {
+        const deleteButton = event.target;
+        const idToDelete = deleteButton.id; // accessing id of that button
+
+        removeTodo(idToDelete);
+        render(); //to update the broweser after deleting
+      }
+
+      function checkTodo(event) {
+        const checkbox = event.target;
+
+        const todoId = checkbox.dataset.todoId;
+        const checked = checkbox.checked; //passing true in checked
+
+        toggleTodo(todoId, checked);
+        render();
+      }
+      /////////////////////////////////////////////
+      /////                                  //////
+      /////////////////////////////////////////////
+
+      render();
+    </script>
+  </body>
+</html>
