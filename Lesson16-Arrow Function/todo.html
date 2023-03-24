@@ -1,0 +1,135 @@
+<html>
+  <head>
+    <title>Todo List App</title>
+  </head>
+  <body>
+    <input id="todo-title" type="text" placeholder="enter a todo-title" />
+    <input id="date-picker" type="date" />
+    <button onclick="addTodo()">Add Todo</button>
+
+    <div id="todo-list"></div>
+    <script>
+      /////////////////////////////////////////////
+      /////                MODEL             //////
+      /////////////////////////////////////////////
+
+      //if localStorage has todos array, then use it
+      // otherwise use the default array
+
+      let todos; // we are creating new var but we don't if it will be array or something else we are not assigning anything
+
+      //retrieve localstorage
+      const savedTodos = JSON.parse(localStorage.getItem("todos"));
+
+      //check if its an Array
+      if (Array.isArray(savedTodos)) {
+        todos = savedTodos;
+      } else {
+        todos = [
+          {
+            title: "Get groceries",
+            dueDate: "2021-10-04",
+            id: "id1",
+          },
+          {
+            title: "Wash car",
+            dueDate: "2021-02-03",
+            id: "id2",
+          },
+          {
+            title: "Make dinner",
+            dueDate: "2021-03-04",
+            id: "id3",
+          },
+        ];
+      }
+
+      //create todo
+
+      const createTodo = (title, dueDate) => {
+        const id = " " + new Date().getTime(); // converting number to string by adding empty string
+
+        todos.push({ title: title, dueDate: dueDate, id: id }); //Array method to add an element
+
+        saveTodos();
+      };
+
+      //Delete todo
+      const removeTodo = (idToDelete) => {
+        todos = todos.filter((todo) => {
+          //if the id of this todo is matches idToDelete, return false
+          // for everything else, return true
+          // if todo.id === idToDelete i.e 01 ===01 returns true and
+          if (todo.id === idToDelete) {
+            return false; // because we want to remove from array
+          } else {
+            return true;
+          }
+        });
+        saveTodos();
+      };
+
+      const saveTodos = () => {
+        //saving the newData
+        localStorage.setItem("todos", JSON.stringify(todos));
+      };
+
+      /////////////////////////////////////////////
+      /////                VIEW              //////
+      /////////////////////////////////////////////
+
+      const render = () => {
+        //reset
+        document.getElementById("todo-list").innerHTML = "";
+
+        // displaying each data from array
+        todos.forEach((todo) => {
+          const div = document.createElement("div");
+          div.innerText = todo.title + " " + todo.dueDate;
+
+          //adding deleteButton to each
+          const deleteButton = document.createElement("button");
+          deleteButton.innerText = "Delete";
+          //giving style attribute using JS
+          deleteButton.style = "margin-left:12px";
+          deleteButton.onclick = deleteTodo; //calling deleteFunction on Click
+
+          //adding id to created button
+          deleteButton.id = todo.id;
+          div.appendChild(deleteButton);
+
+          const todoList = document.getElementById("todo-list");
+          todoList.appendChild(div);
+        });
+      };
+
+      /////////////////////////////////////////////
+      /////               CONTROLLER         //////
+      /////////////////////////////////////////////
+
+      const addTodo = () => {
+        const textBox = document.getElementById("todo-title");
+        const todoTitle = textBox.value;
+
+        const datePicker = document.getElementById("date-picker");
+        const dateValue = datePicker.value;
+        createTodo(todoTitle, dateValue);
+        render();
+      };
+
+      const deleteTodo = (event) => {
+        const deleteButton = event.target;
+        const idToDelete = deleteButton.id; // accessing id of that button
+
+        removeTodo(idToDelete);
+        render(); //to update the broweser after deleting
+      };
+
+      /////////////////////////////////////////////
+      /////                                  //////
+      /////////////////////////////////////////////
+
+      render();
+    </script>
+  </body>
+</html>
